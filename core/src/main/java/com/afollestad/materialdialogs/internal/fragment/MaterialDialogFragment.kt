@@ -24,7 +24,10 @@ import androidx.fragment.app.DialogFragment
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 
-abstract class MaterialDialogFragment : DialogFragment() {
+abstract class MaterialDialogFragment(
+  val scrollable: Boolean = true,
+  val noVerticalPadding: Boolean = false
+) : DialogFragment() {
 
   /**
    * This is the place where you should inflate your view and apply the logic to your UI components.
@@ -65,6 +68,6 @@ abstract class MaterialDialogFragment : DialogFragment() {
     val materialDialog = MaterialDialog(context!!)
     val layoutInflater = LayoutInflater.from(context)
     val view = onCreateView(layoutInflater, savedInstanceState, materialDialog)
-    return materialDialog.customView(view = view, scrollable = true)
+    return materialDialog.customView(view = view, scrollable = scrollable, noVerticalPadding = noVerticalPadding)
   }
 }
